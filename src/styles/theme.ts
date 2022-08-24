@@ -5,6 +5,8 @@ export const theme = {
     destructive: '#FF3B30',
     black: '#081F32',
     white: '#FFF',
+    additional_text: '#6E798C',
+    icon_default: '#A3A3A3',
     gray1: '#8E8E93',
     gray2: '#AEAEB2',
     gray3: '#C7C7CC',
@@ -13,9 +15,9 @@ export const theme = {
     gray6: '#F2F2F7',
   },
   typography: {
-    black: 900,
-    bold: 700,
-    medium: 500,
-    regular: 400,
+    black: 'Roboto-Black', //900
+    bold: 'Roboto-Bold', //700
+    medium: 'Roboto-Medium', //500
+    regular: 'Roboto-Regular', //400
   },
 };

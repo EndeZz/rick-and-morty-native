@@ -1,19 +1,16 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Navigation } from 'src/navigation';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-import styled from 'styled-components/native';
-import { theme } from 'src/styles';
-import { Check } from 'src/components';
-
-const TextApp = styled.Text`
-  color: ${theme.color.primary};
-`;
+const client = new ApolloClient({
+  uri: 'https://rickandmortyapi.com/graphql',
+  cache: new InMemoryCache({}),
+});
 
 export const App = () => {
   return (
-    <View>
-      <TextApp>App</TextApp>
-      <Check />
-    </View>
+    <ApolloProvider client={client}>
+      <Navigation />
+    </ApolloProvider>
   );
 };

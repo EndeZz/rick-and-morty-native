@@ -8,4 +8,4 @@ module.exports = {
   printWidth: 80,
   semi: true,
   endOfLine: 'auto',
-};
+}
