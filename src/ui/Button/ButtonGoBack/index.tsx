@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
 import { ArrowLeftIcon } from 'src/ui/Icon';
-import { ButtonText, ButtonWrapper } from '../styled';
+import { ButtonText, ButtonWrapper } from './styled';
 
 export const ButtonGoBack: FC = () => {
   const { goBack } = useNavigation();
