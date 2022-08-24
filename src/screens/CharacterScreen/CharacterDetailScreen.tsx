@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { theme } from 'src/styles';
 import { StatusBar } from 'react-native';
-import { Layout } from 'src/ui/Layout';
+import { Layout } from 'src/ui';
 import BG from '../../../assets/images/pictures/character-background.png';
 import { useRoute } from '@react-navigation/native';
 

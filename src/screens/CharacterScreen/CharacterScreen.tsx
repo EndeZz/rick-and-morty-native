@@ -13,6 +13,10 @@ export const CharacterScreen = () => {
   const { data, loading } = useAllCharactersQuery();
   const charactersValues = data?.characters?.results;
 
+  const handleNavigateToScreen = () => {
+    return navigation.navigate(routes.CharacterFilter);
+  };
+
   return (
     <>
       <StatusBar
@@ -21,9 +25,7 @@ export const CharacterScreen = () => {
       />
       <Layout>
         <Wrapper>
-          <FilterButton
-            onPress={() => navigation.navigate(routes.CharacterFilter)}
-          />
+          <FilterButton onPress={handleNavigateToScreen} />
           <Title>Character</Title>
         </Wrapper>
 
