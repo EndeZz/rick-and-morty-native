@@ -1,3 +1,3 @@
-export * from './CharacterScreen';
+export * from './CharacterScreens';
 export * from './LocationScreens';
 export * from './EpisodeScreens';
