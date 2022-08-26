@@ -1,90 +1,107 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import { theme } from 'src/styles';
-import { StatusBar } from 'react-native';
-import { Layout } from 'src/ui';
-import BG from '../../../assets/images/pictures/character-background.png';
+import React, { FC, Fragment } from 'react';
+import { ScrollView } from 'react-native';
+import { Layout, Loader, StatusBar } from 'src/ui';
+import BackgroundPic from '../../../assets/images/pictures/character-background.png';
 import { useRoute } from '@react-navigation/native';
-
-const Section = styled.View`
-  width: 100%;
-
-  flex: 1;
-  max-height: 254px;
-  background-color: ${theme.color.gray6};
-`;
-
-const BackgroundImage = styled.Image`
-  width: 100%;
-  height: 83px;
-  position: absolute;
-  resize-mode: cover;
-`;
-export const CharacterPic = styled.Image`
-  width: 130px;
-  height: 130px;
-  border-radius: 80px;
-  border: 5px solid ${theme.color.gray6};
-
-  /* resize-mode: contain; */
-`;
-
-export const Status = styled.Text`
-  font-family: ${theme.typography.regular};
-  font-size: 11px;
-  line-height: 13px;
-  letter-spacing: 0.07px;
-  color: ${theme.color.additional_text};
-`;
-
-export const Name = styled.Text`
-  font-family: ${theme.typography.bold};
-  font-size: 28px;
-  line-height: 34px;
-  letter-spacing: 0.337647px;
-  color: ${theme.color.black};
-`;
-
-export const Species = styled.Text`
-  font-family: ${theme.typography.black};
-  font-size: 13px;
-  line-height: 18px;
-  letter-spacing: -0.08px;
-  text-transform: uppercase;
-  color: ${theme.color.gray1};
-`;
-
-export const Box = styled.View`
-  padding: 12px;
-  height: 79px;
-  align-items: center;
-`;
-
-export const Content = styled.View`
-  align-items: center;
-  padding-top: 14px;
-`;
+import { useGetCharacterDetailsQuery } from 'src/generated/graphql';
+import {
+  BackgroundImage,
+  Box,
+  CharacterPic,
+  Content,
+  DetailContent,
+  DetailLine,
+  DetailTitle,
+  DetailWrapper,
+  Name,
+  Section,
+  Species,
+  Status,
+} from './styled';
+import { DetailItem } from 'src/components';
 
 export const CharacterDetailScreen = () => {
-  const route = useRoute<any>()
+  const route = useRoute<any>();
+
+  const { data, loading } = useGetCharacterDetailsQuery({
+    variables: {
+      id: route.params.id,
+    },
+  });
+
+  const currentData = data?.character;
+
   return (
     <>
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={theme.color.white}
-      />
+      <StatusBar />
+
       <Layout>
-        <Section>
-          <BackgroundImage source={BG} blurRadius={2} />
-          <Content>
-            <CharacterPic source={{ uri: route.params.image }} />
-            <Box>
-              <Status>{route.params.status}</Status>
-              <Name>{route.params.name}</Name>
-              <Species>{route.params.species}</Species>
-            </Box>
-          </Content>
-        </Section>
+        {loading ? (
+          <Loader />
+        ) : (
+          <ScrollView>
+            <Section>
+              <BackgroundImage source={BackgroundPic} blurRadius={2} />
+              <Content>
+                <CharacterPic source={{ uri: currentData?.image }} />
+                <Box>
+                  <Status>{currentData?.status}</Status>
+                  <Name>{currentData?.name}</Name>
+                  <Species>{currentData?.species}</Species>
+                </Box>
+              </Content>
+            </Section>
+
+            <DetailWrapper>
+              <DetailTitle>Informations</DetailTitle>
+
+              <DetailContent>
+                <DetailItem
+                  title="Gender"
+                  subtitle={currentData?.gender || 'Unknown'}
+                />
+                <DetailLine />
+                <DetailItem
+                  title="Origin"
+                  subtitle={currentData?.origin?.name || 'Unknown'}
+                />
+                <DetailLine />
+                <DetailItem
+                  title="Type"
+                  subtitle={currentData?.type || 'Unknown'}
+                />
+                <DetailLine />
+                <DetailItem
+                  title="Location"
+                  subtitle={currentData?.location?.name || 'Unknown'}
+                  isActiveEl
+                />
+              </DetailContent>
+            </DetailWrapper>
+
+            <DetailWrapper>
+              <DetailTitle>Episodes</DetailTitle>
+
+              <DetailContent>
+                {currentData &&
+                  currentData.episode.map((item, index) => (
+                    <Fragment key={item?.id}>
+                      <DetailItem
+                        title={item?.episode || 'Unknown'}
+                        subtitle={item?.name || 'Unknown'}
+                        date={item?.air_date || 'Unknown'}
+                        path={''}
+                        isActiveEl
+                      />
+                      {currentData?.episode.length - 1 > index && (
+                        <DetailLine />
+                      )}
+                    </Fragment>
+                  ))}
+              </DetailContent>
+            </DetailWrapper>
+          </ScrollView>
+        )}
       </Layout>
     </>
   );

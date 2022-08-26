@@ -2,9 +2,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { routes } from 'src/constants/routes';
 import { CharacterDetailScreen, CharacterScreen } from 'src/screens';
-import { ButtonGoBack } from 'src/ui/Button';
+import { theme } from 'src/styles';
+import { ButtonGoBack } from 'src/ui';
+import { CharacterStackParamList } from './type';
 
-const CharacterStack = createNativeStackNavigator();
+const CharacterStack = createNativeStackNavigator<CharacterStackParamList>();
 
 export const CharacterStackScreen = () => {
   return (
@@ -13,7 +15,7 @@ export const CharacterStackScreen = () => {
       screenOptions={{
         headerTitleStyle: {
           fontSize: 15,
-          fontFamily: 'Roboto-Black',
+          fontFamily: theme.typography.black,
         },
       }}>
       <CharacterStack.Screen
@@ -24,7 +26,7 @@ export const CharacterStackScreen = () => {
       <CharacterStack.Screen
         name={routes.CharacterDetailScreen}
         component={CharacterDetailScreen}
-        options={({ route }: any) => ({
+        options={({ route }) => ({
           headerTitleAlign: 'center',
           headerTitle: route.params.name,
           headerLeft: () => <ButtonGoBack />,

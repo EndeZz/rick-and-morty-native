@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { theme } from 'src/styles';
 import { CharacterStackScreen } from './CharacterStack';
 import { EpisodeScreen, LocationScreen } from 'src/screens';
 import { routes } from 'src/constants/routes';
-import { CharacterIcon, EpisodeIcon, LocationIcon } from 'src/ui/Icon';
+import { CharacterIcon, EpisodeIcon, LocationIcon } from 'src/ui';
 
 const Tab = createBottomTabNavigator();
 
-export const TabNavigation: FC = () => {
+export const TabNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{

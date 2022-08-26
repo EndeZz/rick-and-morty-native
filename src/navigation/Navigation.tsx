@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { TabNavigation } from './TabNavigation';
 import { routes } from 'src/constants/routes';
-import { FilterList } from 'src/components/FilterList';
+import { FilterDisplay } from 'src/components/FilterDisplay';
 
 const Stack = createNativeStackNavigator();
 
-export const Navigation: FC = () => {
+export const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -15,11 +15,14 @@ export const Navigation: FC = () => {
         initialRouteName={routes.TabNavigation}>
         <Stack.Screen name={routes.TabNavigation} component={TabNavigation} />
 
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Group
+          screenOptions={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+          }}>
           <Stack.Screen
             name={routes.CharacterFilter}
-            component={FilterList}
-            options={{ animation: 'slide_from_bottom' }}
+            component={FilterDisplay}
           />
         </Stack.Group>
       </Stack.Navigator>

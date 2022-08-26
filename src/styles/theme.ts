@@ -13,6 +13,7 @@ export const theme = {
     gray4: '#D1D1D6',
     gray5: '#E5E5EA',
     gray6: '#F2F2F7',
+    input_bg: 'rgba(118, 118, 128, 0.12)',
   },
   typography: {
     black: 'Roboto-Black', //900

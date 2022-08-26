@@ -1,10 +1,24 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { FC, useState } from 'react';
+import { FlatList, View } from 'react-native';
+import { FilterItem } from '../FilterItem';
+import { FilterContent, FilterLine, FilterTitle } from './styled';
 
-export const FilterList = () => {
+interface FilterListProps {
+  category: string;
+  data: any;
+}
+
+export const FilterList: FC<FilterListProps> = ({ category, data }) => {
   return (
     <View>
-      <Text>Filter List entities</Text>
+      <FilterTitle>{category}</FilterTitle>
+      <FilterContent>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <FilterItem title={item.title} />}
+          ItemSeparatorComponent={FilterLine}
+        />
+      </FilterContent>
     </View>
   );
 };

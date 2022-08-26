@@ -1,26 +1,25 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { ImageSourcePropType } from 'react-native';
 import { routes } from 'src/constants/routes';
-import { Character } from 'src/generated/graphql';
 import { CardBox, CardImg, CardItem, CardStatus, CardTitle } from './styled';
 
-interface CardProps {
-  name: Character;
-  status: Character;
-  species: Character;
+export interface CardProps {
+  id: string;
+  name: string;
+  status: string;
   image: ImageSourcePropType;
 }
 
-export const Card: FC<CardProps> = ({ name, status, species, image }) => {
+export const Card: FC<CardProps> = ({ id, name, status, image }) => {
   const navigation = useNavigation<any>();
 
-  const handleNavigateToScreen = () => {
-    return navigation.navigate(routes.CharacterStackScreen, {
+  const handleNavigateToScreen = useCallback(() => {
+    navigation.navigate(routes.CharacterStackScreen, {
       screen: routes.CharacterDetailScreen,
-      params: { name, status, species, image },
+      params: { id, name },
     });
-  };
+  }, [navigation]);
 
   return (
     <CardItem onPress={handleNavigateToScreen}>

@@ -1,11 +1,26 @@
-query allCharacters($page: Int) {
-  characters(page: $page) {
-    results {
+query getCharacterDetails($id: ID!) {
+  character(id: $id) {
+    id
+    name
+    status
+    species
+    type
+    gender
+    image
+    origin {
       id
       name
-      status
-      species
-      image
+    }
+    location {
+      id
+      name
+      type
+    }
+    episode {
+      id
+      name
+      air_date
+      episode
     }
   }
 }

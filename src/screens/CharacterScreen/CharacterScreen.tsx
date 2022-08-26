@@ -1,41 +1,35 @@
-import React from 'react';
-import { theme } from 'src/styles';
+import React, { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar, Text } from 'react-native';
-import { Card } from 'src/components';
+import { Card, Header } from 'src/components';
 import { routes } from 'src/constants/routes';
-import { useAllCharactersQuery } from 'src/generated/graphql';
-import { List, Title, Wrapper } from './styled';
-import { FilterButton, Layout } from 'src/ui';
+import { List } from './styled';
+import { Layout, Loader, StatusBar } from 'src/ui';
+import { CharacterScreenNavigation } from 'src/navigation/type';
+import { useGetCharactersQuery } from 'src/generated/graphql';
 
 export const CharacterScreen = () => {
-  const navigation = useNavigation();
-  const { data, loading } = useAllCharactersQuery();
+  const navigation = useNavigation<CharacterScreenNavigation>();
+  const { data, loading } = useGetCharactersQuery();
+
   const charactersValues = data?.characters?.results;
 
-  const handleNavigateToScreen = () => {
-    return navigation.navigate(routes.CharacterFilter);
-  };
+  const handleNavigateToScreen = useCallback(() => {
+    navigation.navigate(routes.CharacterFilter);
+  }, [navigation]);
 
   return (
     <>
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={theme.color.white}
-      />
+      <StatusBar />
+
       <Layout>
-        <Wrapper>
-          <FilterButton onPress={handleNavigateToScreen} />
-          <Title>Character</Title>
-        </Wrapper>
+        <Header title="Character" onPress={handleNavigateToScreen} />
 
         {loading ? (
-          <Text>Загрузка</Text>
+          <Loader />
         ) : (
           <List
             data={charactersValues}
             renderItem={({ item }: any) => <Card {...item} />}
-            keyExtractor={({ id }: any) => id}
             numColumns={2}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
           />
