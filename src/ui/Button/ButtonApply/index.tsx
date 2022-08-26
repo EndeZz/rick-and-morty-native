@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import { GestureResponderEvent } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 import { ButtonApplyTitle, ButtonApplyWrapper } from './styled';
 
 interface IButtonApply {
-  onPress?: (event: GestureResponderEvent) => void;
+  onPress?: () => void;
 }
 
-export const ButtonApply: FC<IButtonApply> = ({ onPress }) => {
-  return (
-    <ButtonApplyWrapper onPress={onPress}>
-      <ButtonApplyTitle>Apply</ButtonApplyTitle>
-    </ButtonApplyWrapper>
-  );
-};
+export const ButtonApply: FC<IButtonApply & TouchableOpacityProps> = ({
+  onPress,
+}) => (
+  <ButtonApplyWrapper onPress={onPress}>
+    <ButtonApplyTitle>Apply</ButtonApplyTitle>
+  </ButtonApplyWrapper>
+);

@@ -6,19 +6,19 @@ import { Title, ModalHeader } from './styled';
 interface ModalProps {
   title: string;
   isVisible: boolean;
-  toggleModal: () => void;
+  onPress: () => void;
   children: React.ReactNode;
 }
 
 export const Modal: FC<ModalProps> = ({
   title,
   isVisible,
-  toggleModal,
+  onPress,
   children,
 }) => (
   <ModalElement visible={isVisible} animationType="slide">
     <ModalHeader>
-      <ButtonGoBack onPress={toggleModal} />
+      <ButtonGoBack onPress={onPress} />
       <Title>{title}</Title>
     </ModalHeader>
     {children}

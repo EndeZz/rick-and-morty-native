@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import { GestureResponderEvent } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 import { FilterTitle, FilterWrapper } from './styled';
 
 interface IFilterButton {
-  onPress?: (event: GestureResponderEvent) => void;
+  onPress?: () => void;
 }
 
-export const FilterButton: FC<IFilterButton> = ({ onPress }) => {
-  return (
-    <FilterWrapper onPress={onPress}>
-      <FilterTitle>Filter</FilterTitle>
-    </FilterWrapper>
-  );
-};
+export const FilterButton: FC<IFilterButton & TouchableOpacityProps> = ({
+  onPress,
+}) => (
+  <FilterWrapper onPress={onPress}>
+    <FilterTitle>Filter</FilterTitle>
+  </FilterWrapper>
+);

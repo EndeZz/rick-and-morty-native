@@ -1,13 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
-import { ArrowLeftIcon } from 'src/ui/Icon';
+import { TouchableOpacityProps } from 'react-native';
+import { ArrowLeftIcon } from 'src/ui';
 import { ButtonText, ButtonWrapper } from './styled';
 
 interface ButtonGoBackProps {
   onPress?: () => void;
 }
 
-export const ButtonGoBack: FC<ButtonGoBackProps> = ({ onPress }) => {
+export const ButtonGoBack: FC<ButtonGoBackProps & TouchableOpacityProps> = ({
+  onPress,
+}) => {
   const { goBack } = useNavigation();
 
   const handleOnPress = () => (onPress ? onPress() : goBack());
