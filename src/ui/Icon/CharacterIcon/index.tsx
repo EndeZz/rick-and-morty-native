@@ -1,17 +1,21 @@
 import React, { FC } from 'react';
 import Svg, { Path } from 'react-native-svg';
 import { theme } from 'src/styles';
+import { IconProps } from '../types';
 
 interface CharacterIconProps {
   focused: boolean;
 }
 
-export const CharacterIcon: FC<CharacterIconProps> = ({ focused }) => (
+export const CharacterIcon: FC<CharacterIconProps & IconProps> = ({
+  focused,
+  color = theme.color.primary,
+}) => (
   <Svg width="28" height="28" viewBox="0 0 28 28" fill="none">
     <Path
       d="M14.0909 4C9.07778 4 5 8.03793 5 12.9998L5.05152 20.9997C5.29899 22.6907 6.75859 23.9996 8.53535 23.9996C9.72121 23.9996 10.6303 23.5826 11.2343 22.8257C11.61 23.199 12.0566 23.4951 12.5485 23.6966C13.0403 23.8982 13.5676 24.0013 14.0999 24C14.6322 23.9987 15.159 23.893 15.6498 23.689C16.1407 23.4851 16.5858 23.1869 16.9596 22.8117C17.5667 23.5736 18.4788 23.9996 19.6465 23.9996C21.596 23.9996 23.1818 22.4297 23.1818 20.4997V12.9998C23.1818 8.03793 19.104 4 14.0909 4Z"
-      fill={focused ? theme.color.primary : 'transparent'}
-      stroke={focused ? theme.color.primary : theme.color.icon_default}
+      fill={focused ? color : 'transparent'}
+      stroke={focused ? color : theme.color.icon_default}
       stroke-width="2"
     />
     <Path
