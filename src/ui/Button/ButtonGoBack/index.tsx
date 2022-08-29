@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
 import { TouchableOpacityProps } from 'react-native';
+import { useNavigation } from 'src/navigation';
 import { ArrowLeftIcon } from 'src/ui';
 import { ButtonText, ButtonWrapper } from './styled';
 

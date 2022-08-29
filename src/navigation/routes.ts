@@ -1,3 +1,9 @@
+import {
+  ParamListBase,
+  useNavigation as useNativeNavigation,
+} from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 export enum routes {
   TabNavigation = 'TabNavigation',
   CharacterStackScreen = 'CharacterStackScreen',
@@ -13,3 +19,6 @@ export enum routes {
   EpisodeScreen = 'EpisodeScreen',
   EpisodeFilter = 'EpisodeFilter',
 }
+
+export const useNavigation = () =>
+  useNativeNavigation<NativeStackNavigationProp<ParamListBase, routes>>();

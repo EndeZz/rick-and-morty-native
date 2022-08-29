@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { routes } from 'src/constants/routes';
+import { routes } from 'src/navigation';
 
 export type CharacterStackParamList = {
   [routes.CharacterScreen]: undefined;

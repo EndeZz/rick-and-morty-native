@@ -1,14 +1,12 @@
 import React, { useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Card, Header } from 'src/components';
-import { routes } from 'src/constants/routes';
 import { List } from './styled';
 import { Layout, Loader, StatusBar } from 'src/ui';
-import { CharacterScreenNavigation } from 'src/navigation/type';
+import { routes, useNavigation } from 'src/navigation';
 import { useGetCharactersQuery } from 'src/generated/graphql';
 
 export const CharacterScreen = () => {
-  const navigation = useNavigation<CharacterScreenNavigation>();
+  const navigation = useNavigation();
   const { data, loading } = useGetCharactersQuery();
 
   const charactersValues = data?.characters?.results;

@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { TabNavigation } from './TabNavigation';
-import { routes } from 'src/constants/routes';
+import { routes } from 'src/navigation';
 import { FilterDisplay } from 'src/components/FilterDisplay';
 
 const Stack = createNativeStackNavigator();

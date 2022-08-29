@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { FC, useCallback } from 'react';
 import { Text } from 'react-native';
+import { useNavigation } from 'src/navigation';
 import { ArrowIcon } from 'src/ui';
 import {
   ArrowInner,

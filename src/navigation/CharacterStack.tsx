@@ -1,10 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { routes } from 'src/constants/routes';
+import { routes, CharacterStackParamList } from 'src/navigation';
 import { CharacterDetailScreen, CharacterScreen } from 'src/screens';
 import { theme } from 'src/styles';
 import { ButtonGoBack } from 'src/ui';
-import { CharacterStackParamList } from './type';
 
 const CharacterStack = createNativeStackNavigator<CharacterStackParamList>();
 
