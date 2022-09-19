@@ -213,7 +213,7 @@ export type GetCharactersQueryVariables = Exact<{
 }>;
 
 
-export type GetCharactersQuery = { readonly __typename?: 'Query', readonly characters?: { readonly __typename?: 'Characters', readonly results?: ReadonlyArray<{ readonly __typename?: 'Character', readonly id?: string | null, readonly name?: string | null, readonly status?: string | null, readonly image?: string | null } | null> | null } | null };
+export type GetCharactersQuery = { readonly __typename?: 'Query', readonly characters?: { readonly __typename?: 'Characters', readonly info?: { readonly __typename?: 'Info', readonly pages?: number | null, readonly next?: number | null } | null, readonly results?: ReadonlyArray<{ readonly __typename?: 'Character', readonly id?: string | null, readonly name?: string | null, readonly status?: string | null, readonly image?: string | null } | null> | null } | null };
 
 
 export const GetCharacterDetailsDocument = gql`
@@ -275,6 +275,10 @@ export type GetCharacterDetailsQueryResult = Apollo.QueryResult<GetCharacterDeta
 export const GetCharactersDocument = gql`
     query getCharacters($page: Int) {
   characters(page: $page) {
+    info {
+      pages
+      next
+    }
     results {
       id
       name
