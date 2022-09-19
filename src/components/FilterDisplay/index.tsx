@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
+import { categoryFields } from 'src/constants/filter.category';
 import { ButtonApply, ButtonClear, Layout } from 'src/ui';
 import { FilterList } from '../FilterList';
 import { SearchList } from '../SearchList';
@@ -9,18 +10,6 @@ export const FilterDisplay: FC = () => {
   /////////////////////////
   //TODO: Избавиться от тестового кода при последующей реализации фильтра
   const leftVisible = false;
-  const dataStatus = [
-    { title: 'Alive' },
-    { title: 'Dead' },
-    { title: 'Unknown' },
-  ];
-
-  const dataGender = [
-    { title: 'Female' },
-    { title: 'Male' },
-    { title: 'Genderless' },
-    { title: 'Unknown' },
-  ];
   /////////////////////////
 
   return (
@@ -33,8 +22,8 @@ export const FilterDisplay: FC = () => {
 
       <SearchList />
 
-      <FilterList category="Status" data={dataStatus} />
-      <FilterList category="Gender" data={dataGender} />
+      <FilterList category="Status" fields={categoryFields.status} />
+      <FilterList category="Gender" fields={categoryFields.gender} />
     </Layout>
   );
 };
