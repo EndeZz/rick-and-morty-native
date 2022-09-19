@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Card, Header } from 'src/components';
 import { List } from './styled';
 import { Layout, Loader, StatusBar } from 'src/ui';
@@ -12,9 +12,9 @@ export const CharacterScreen = () => {
 
   const charactersValues = data?.characters?.results ?? [];
 
-  const handleNavigateToScreen = useCallback(() => {
+  const handleNavigateToScreen = () => {
     navigation.navigate(routes.CharacterFilter);
-  }, [navigation]);
+  };
 
   return (
     <>

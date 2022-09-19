@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { ScrollView } from 'react-native';
 import { Layout, Loader, StatusBar } from 'src/ui';
 import BackgroundPic from '../../../assets/images/pictures/character-background.png';
@@ -21,11 +21,11 @@ import {
 import { DetailItem } from 'src/components';
 
 export const CharacterDetailScreen = () => {
-  const route = useRoute<any>();
+  const route = useRoute();
 
   const { data, loading } = useGetCharacterDetailsQuery({
     variables: {
-      id: route.params.id,
+      id: (route.params as { id: string }).id,
     },
   });
 

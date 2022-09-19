@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import { Text } from 'react-native';
 import { useNavigation } from 'src/navigation';
 import { ArrowIcon } from 'src/ui';
@@ -28,9 +28,9 @@ export const DetailItem: FC<DetailItemProps> = ({
 }) => {
   const navigation = useNavigation();
 
-  const handlePressOnBlock = useCallback(() => {
+  const handlePressOnBlock = () => {
     if (isActiveEl) console.log('PRESSED');
-  }, []);
+  };
 
   const Tag: React.ElementType = isActiveEl
     ? DetailTouchableWrapper

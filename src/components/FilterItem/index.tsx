@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { CheckBox } from 'src/ui';
 import { FilterBlockWrapper, FilterCaption, FilterInner } from './styled';
 
@@ -9,9 +9,9 @@ interface FilterItemProps {
 export const FilterItem: FC<FilterItemProps> = ({ title }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
-  const handleChangeSelected = useCallback(() => {
+  const handleChangeSelected = () => {
     setIsSelected(prev => !prev);
-  }, [isSelected]);
+  };
 
   return (
     <FilterBlockWrapper onPress={handleChangeSelected}>

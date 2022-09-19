@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { CheckBox, Modal } from 'src/ui';
 import { InputItem } from '../InputItem';
 import {
@@ -15,12 +15,12 @@ interface SearchItemProps {
 }
 
 export const SearchItem: FC<SearchItemProps> = ({ title, caption }) => {
-  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const handleToggleModal = useCallback(() => {
+  const handleToggleModal = () => {
     setModalVisible(prev => !prev);
-  }, [isModalVisible]);
+  };
 
   return (
     <>

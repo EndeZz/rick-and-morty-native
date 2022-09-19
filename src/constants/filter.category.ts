@@ -1,9 +1,9 @@
 interface IFields {
-  status: string[];
-  gender: string[];
+  STATUS: string[];
+  GENDER: string[];
 }
 
-export const categoryFields: IFields = {
-  status: ['Alive', 'Dead', 'Unknown'],
-  gender: ['Female', 'Male', 'Genderless', 'Unknown'],
+export const CATEGORY_FIELDS: IFields = {
+  STATUS: ['Alive', 'Dead', 'Unknown'],
+  GENDER: ['Female', 'Male', 'Genderless', 'Unknown'],
 };
